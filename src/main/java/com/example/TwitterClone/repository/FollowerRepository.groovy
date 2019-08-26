@@ -12,4 +12,3 @@ interface FollowerRepository {
     List<Follower> getFollowersByUserEmail(@Param("email") String email)
 }
 
-//

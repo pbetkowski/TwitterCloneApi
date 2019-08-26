@@ -1,5 +1,6 @@
 package com.example.TwitterClone.model
 
+import com.example.TwitterClone.utils.HashUtils
 import com.fasterxml.jackson.annotation.JsonBackReference
 import groovy.transform.Canonical
 
@@ -14,18 +15,24 @@ import javax.validation.constraints.NotNull
 class User extends BaseEntity{
 
     @NotNull
-    private String username
+    String username
 
     @NotNull
-    private String password
+    String password
 
     @NotNull
-    private String email
+    String email
 
     @JsonBackReference
     @OneToMany(mappedBy = "followeeId", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<Follower> followers
+
+    User(String username, String password, String email) {
+        this.username = username
+        this.password = HashUtils.md5Encryption(password)
+        this.email = email
+        this.followers = new ArrayList<>()
+    }
+
+    User(){}
 }
-
-
-//

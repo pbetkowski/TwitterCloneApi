@@ -18,8 +18,11 @@ class UserService {
     }
 
     Mono<User> getUserByEmail(String email) {
-        Mono.just(userRepository.getUserByEmail(email).orElse(null))
+        Mono.just(userRepository.getUserByEmail(email))
+    }
+
+    Mono<User> registerNewTwitterUser(User user) {
+        Mono.just(userRepository.save(user))
     }
 }
 
-//
