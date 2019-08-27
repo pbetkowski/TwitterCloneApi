@@ -15,6 +15,6 @@ class HashUtils {
 
     static Token generateWebToken(String email) {
         long randomNumber = Math.abs(new Random().nextLong())
-        new Token(md5Encryption(Long.toString(randomNumber, 16)))
+        new Token(md5Encryption(email + Long.toString(randomNumber, 16)))
     }
 }
