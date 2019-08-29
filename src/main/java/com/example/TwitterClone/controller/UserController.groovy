@@ -37,6 +37,8 @@ class UserController {
         userService.registerNewTwitterUser(new User(user.username, user.password, user.email))
     }
 
+
+    @Deprecated
     @GetMapping(value = "/login")
     Mono<Token> login(@RequestParam(value = "email") String email, @RequestParam(value = "password") String password) {
 
@@ -44,6 +46,7 @@ class UserController {
                 .filter({ (it.password == HashUtils.md5Encryption(password)) })
                 .map({HashUtils.generateWebToken(it.email)})
     }
+
 }
 
 
